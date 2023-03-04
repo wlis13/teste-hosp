@@ -1,13 +1,16 @@
 const express = require('express');
-const getAll = require('./controllers/test');
+const dotenv = require('dotenv');
+const carnesRoutes = require('./routes/carnesRoutes');
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
 
-app.get('/', getAll);
+app.use('/', carnesRoutes);
 
-const PORT = 3005;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => console.log(`Servidor rodando na porta: ${PORT}`));
 
